@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="/css/register.css">
+
+</head>
+<body>
+    <header class = "navbar">
+        <div class = "logo">
+            <span class = "logo-rikkei">Rikkei</span> <span class = "logo-cinema">Cinema</span>
+        </div>
+        <nav class = "nav-links">
+            <a href="#">Trang chủ</a>
+            <a href="#">Thông tin</a>
+            <a href="#">Liên hệ</a>
+        </nav>
+        <button class = "btn-login-nav">Đăng nhập</button>
+    </header>
+    <main class="main-content">
+        <div class="register-card">
+            <h2>Tạo tài khoản mới</h2>
+            <p class="subtitle">Đăng ký để đặt vé xem phim ngay hôm nay</p>
+            <form id = "register-form">
+                <div class="input-group">
+                    <label>Họ và tên</label>
+                    <input type="text" id = "fullName" placeholder="Nguyễn Văn A">
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id = "email" placeholder="email@example.com">
+                </div>
+                <div class="input-group">
+                    <label>Mật khẩu</label>
+                    <div class="input-wrapper">
+                        <input type="password" id = "password" placeholder="******">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Xác nhận mật khẩu</label>
+                    <div class="input-wrapper">
+                        <input type="password" id = "confirm-password" placeholder="******">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </div>
+                </div>
+                <div class="terms">
+                    <input type="checkbox" id="agree">
+                    <label for="agree">Tôi đồng ý với <a href="#">điều khoản sử dụng</a> và chính sách bảo mật của CineEdu.</label>
+                </div>
+                <button type="submit" class="btn-submit">
+                    Đăng ký <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+            <p class="footer-link">
+                Đã có tài khoản? <a href="/pages/login.html">Đăng nhập ngay</a>
+            </p>
+        </div>
+    </main>
+    <footer class="page-footer">
+        © 2026 RikkeiEdu. Tất cả quyền được bảo mật .
+    </footer>
+    <script src="/js/register.js"></script>
+</body>
+</html>

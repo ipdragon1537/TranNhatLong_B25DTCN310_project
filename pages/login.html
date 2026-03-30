@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rikkei Cinema - Đăng nhập</title>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">
+        <span class="logo-rikkei">Rikkei</span>
+        <span class="logo-cinema">Cinema</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Trang chủ</a>
+        <a href="#">Thông tin</a>
+        <a href="#">Liên hệ</a>
+      </nav>
+      <button class="btn-login-nav">Đăng nhập</button>
+    </header>
+
+    <main class="login-container">
+      <div class="login-card">
+        <div class="banner">
+          <img
+            src="/assets/images/ae1e8da76be79679d09ac78da914426e82c15e63.png"
+            alt=""
+          />
+          <div class="overlay"></div>
+        </div>
+        <div class="card-body">
+          <h2>Chào mừng quay trở lại</h2>
+          <form id="login-form">
+            <div class="input-group">
+              <h3>Email</h3>
+              <div class="input-wrapper">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Nhập email của bạn"
+                />
+                <i class="fa-regular fa-envelope"></i>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <h3>Mật khẩu</h3>
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Nhập mật khẩu của bạn"
+                />
+                <i class="fa-regular fa-eye"></i>
+              </div>
+            </div>
+
+            <div class="auth-options">
+              <label class="remember-me">
+                <input type="checkbox" /> Ghi nhớ đăng nhập
+              </label>
+              <a href="#" class="forgot-password">Quên mật khẩu?</a>
+            </div>
+            <button type="submit" class="btn-submit">
+              Đăng nhập <i class="fa-solid fa-arrow"></i>
+            </button>
+          </form>
+          <p class="footer-text">
+            Bạn chưa có tài khoản
+            <a href="/pages/register.html">Đăng ký ngay</a>
+          </p>
+        </div>
+      </div>
+    </main>
+    <div id="toast-container"></div>
+    <script src="/js/login.js"></script>
+  </body>
+</html>
