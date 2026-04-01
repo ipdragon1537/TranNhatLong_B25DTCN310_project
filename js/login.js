@@ -1,123 +1,140 @@
-// toggle khi bấm vào icon mắt hiện mật khẩu
-let password = document.getElementById("password");
-let eye = document.querySelector("#password ~ i");
-eye.addEventListener("click", () => {
-  if (password.type === "password") {
-    password.type = "text";
-    eye.classList.add("fa-eye-slash");
-    eye.classList.remove("fa-eye");
-  } else {
-    password.type = "password";
-    eye.classList.add("fa-eye");
-    eye.classList.remove("fa-eye-slash");
-  }
-});
-const data = {
-  users: [
-    {
-      id: 1,
-      fullName: "Admin Chính",
-      email: "LQTuan@rikkei.edu.vn",
-      password: "Admin123456",
-      role: "admin",
-      createdAt: "2026-03-03T12:26:21.617Z",
-      isActive: true,
-    },
-    {
-      id: 2,
-      fullName: "Nguyễn Văn A",
-      email: "nguyenvana@example.com",
-      password: "Matkhau123",
-      role: "user",
-      createdAt: "2026-03-01T12:26:21.617Z",
-      isActive: true,
-    },
-    {
-      id: 3,
-      fullName: "Trần Thị B",
-      email: "tranthib@example.com",
-      password: "12345678",
-      role: "user",
-      createdAt: "2026-03-03T12:26:21.617Z",
-      isActive: false,
-    },
-  ],
+const getStorageUsers = () => {
+  const data = localStorage.getItem("users");
+  return data ? JSON.parse(data) : [];
 };
+
+const saveStorageUsers = (users) => {
+  localStorage.setItem("users", JSON.stringify(users));
+};
+const getAllUsers = () => {
+  const storageUsers = getStorageUsers();
+  const defaultEmails = new Set(storageUsers.map(u => u.email));
+  const uniqueStorage = storageUsers.filter(u => !defaultEmails.has(u.email));
+  return [...storageUsers, ...uniqueStorage];
+};
+const registerForm = document.getElementById("register-form");
+
+if (registerForm) {
+  registerForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    const fullName = document.getElementById("fullName")?.value.trim();
+    const email = document.getElementById("email")?.value.trim();
+    const password = document.getElementById("password")?.value.trim();
+    const confirmPassword = document.getElementById("confirmPassword")?.value.trim();
+    if (!fullName || !email || !password) {
+      showToast("Vui lòng điền đầy đủ thông tin!", "error");
+      return;
+    }
+    
+    if (password !== confirmPassword) {
+      showToast("Mật khẩu xác nhận không khớp!", "error");
+      return;
+    }
+    
+    if (password.length < 6) {
+      showToast("Mật khẩu phải có ít nhất 6 ký tự!", "error");
+      return;
+    }
+    
+    const allUsers = getAllUsers();
+    if (allUsers.some(u => u.email === email)) {
+      showToast("Email đã được sử dụng!", "error");
+      return;
+    }
+    const newUser = {
+      id: Date.now(),
+      fullName,
+      email,
+      password, 
+      role: "user",
+      createdAt: new Date().toISOString(),
+      isActive: true
+    };
+    const storageUsers = getStorageUsers(); 
+    if (storageUsers.some(u => u.email === email)) {
+        showToast("Email này đã tồn tại trong bộ nhớ!", "error");
+        return;
+    }
+
+    storageUsers.push(newUser);
+    saveStorageUsers(storageUsers); 
+    
+    showToast("Đăng ký thành công!", "success");
+    
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1500);
+  });
+}
 const loginForm = document.getElementById("login-form");
 
-const showToast = (message, type = "success") => {
-  const container = document.getElementById("toast-container");
-  const toast = document.createElement("div");
+if (loginForm) {
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  const title =
-    type === "success" ? "Đăng nhập thành công" : "Đăng nhập thất bại";
-  const icon = type === "success" ? "fa-circle-check" : "fa-circle-xmark";
+    const emailValue = document.getElementById("email").value.trim();
+    const passwordValue = document.getElementById("password").value.trim();
 
-  toast.className = `toast ${type}`;
-  toast.innerHTML = `
-        <i class="fa-solid ${icon} main-icon" style="font-size: 20px; margin-top: 2px;"></i>
-        <div class="toast-content">
-            <span class="toast-title">${title}</span>
-            <span class="toast-msg">${message}</span>
-        </div>
-        <i class="fa-solid fa-xmark toast-close"></i>
-    `;
-
-  const closeBtn = toast.querySelector(".toast-close");
-  closeBtn.addEventListener("click", () => toast.remove());
-
-  container.appendChild(toast);
-
-  setTimeout(() => {
-    toast.style.animation = "fadeOut 0.5s ease forwards";
-    setTimeout(() => toast.remove(), 500);
-  }, 4000);
-};
-
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const emailValue = document.getElementById("email").value.trim();
-  const passwordValue = document.getElementById("password").value.trim();
-
-  if (emailValue === "") {
-    showToast("Email không được để trống!", "error");
-    return;
-  }
-  if (passwordValue === "") {
-    showToast("Mật khẩu không được để trống!", "error");
-    return;
-  }
-
-  let user = data.users.find(
-    (u) => u.email === emailValue && u.password === passwordValue,
-  );
-
-  if (!user) {
-    const localUser = JSON.parse(localStorage.getItem("user"));
-    if (
-      localUser &&
-      localUser.email === emailValue &&
-      localUser.password === passwordValue
-    ) {
-      user = { ...localUser, role: "user", isActive: true };
+    if (!emailValue) {
+      showToast("Email không được để trống!", "error");
+      return;
     }
-  }
+    if (!passwordValue) {
+      showToast("Mật khẩu không được để trống!", "error");
+      return;
+    }
+    const allUsers = getAllUsers();
+    const user = allUsers.find(
+      u => u.email === emailValue && u.password === passwordValue
+    );
 
-  if (user) {
+    if (!user) {
+      showToast("Tài khoản hoặc mật khẩu không chính xác.", "error");
+      return;
+    }
+
     if (!user.isActive) {
       showToast("Tài khoản của bạn hiện đang bị khóa!", "error");
       return;
     }
+    localStorage.setItem("currentUser", JSON.stringify(user));
 
-    showToast("Chào mừng bạn đến với trang web của Rikkei.", "success");
+    showToast("Đăng nhập thành công!", "success");
 
     setTimeout(() => {
       if (user.role === "admin") {
         window.location.href = "admin.html";
+      } else {
+        window.location.href = "index.html";
       }
     }, 1500);
-  } else {
-    showToast("Tài khoản hoặc mật khẩu không chính xác.", "error");
-  }
-});
+  });
+}
+function showToast(message, type = "success") {
+    let container = document.getElementById("toast-container");
+    if (!container) {
+        container = document.createElement("div");
+        container.id = "toast-container";
+        document.body.appendChild(container);
+    }
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    const icon = type === "success" ? "check_circle" : "error";
+    const title = type === "success" ? "Thành công" : "Thất bại";
+    toast.innerHTML = `
+        <i class="material-icons main-icon">${icon}</i>
+        <div class="toast-content">
+            <span class="toast-title">${title}</span>
+            <span class="toast-msg">${message}</span>
+        </div>
+        <i class="material-icons toast-close" onclick="this.parentElement.remove()">close</i>
+    `;
+    container.appendChild(toast);
+    setTimeout(() => {
+        toast.style.animation = "fadeOut 0.5s ease forwards";
+        setTimeout(() => {
+            toast.remove();
+        }, 500);
+    }, 4000);
+}

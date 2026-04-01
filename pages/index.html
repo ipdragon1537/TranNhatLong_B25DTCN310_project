@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/index.css" />
   </head>
   <body>
     <header class="navbar">
@@ -21,44 +21,75 @@
       <a class="btn-login-nav" href="login.html">Đăng nhập/Đăng ký</a>
     </header>
     <section class="section">
+      <div class="hero-image"></div>
       <div class="container">
         <h5>Đang thịnh hành</h5>
-        <h2>Dune:Hành tinh cát</h2>
+        <h2>Dune: Hành Tinh Cát</h2>
         <p>
           Câu chuyện về cuộc hành trình của Paul Atreides, một chàng trai trẻ
           tài năng và rực rỡ, sinh ra với số phận vĩ đại vượt quá sự hiểu biết
           của mình.
         </p>
-        <button class="ticket-button">Đặt vé ngay</button>
-        <button class="trailer">Xem trailer</button>
+        <div class="button-group">
+          <button class="ticket-button">🎟️ Đặt vé ngay</button>
+          <button class="trailer">▶ Xem trailer</button>
+        </div>
       </div>
     </section>
     <section class="film-book">
-      <h3></h3>
-      <div>
-        <img src="/assets/images/86ba20688d955f67aa48767f451d79cbb05decdc.png" alt="" />
+  <h3>Phim đang chiếu</h3>
+  <div id="movie-list"></div>
+      <!-- <div class="books">
+        <img
+          src="/assets/images/86ba20688d955f67aa48767f451d79cbb05decdc.png"
+          alt="Dune"
+        />
         <h4>Dune</h4>
-        <p><img src="/assets/icons/Container.png" alt="">155 phút • Hành động viễn tưởng</p>
-        <button type="submit">Mua vé</button>
+        <p>
+          <img src="/assets/icons/Container.png" alt="" />
+          155 phút • Hành động, Viễn tưởng
+        </p>
+        <button type="button">Mua vé</button>
       </div>
-      <div>
-        <img src="/assets/images/9eae6d927b0375800da890144507d0fe1addf2aa.png" alt="" />
+
+      <div class="books">
+        <img
+          src="/assets/images/9eae6d927b0375800da890144507d0fe1addf2aa.png"
+          alt="The Batman"
+        />
         <h4>The Batman</h4>
-        <p><img src="/assets/icons/Container.png" alt="">176 phút • Hành động,Tội phạm</p>
-        <button type="submit">Mua vé</button>
+        <p>
+          <img src="/assets/icons/Container.png" alt="" />
+          176 phút • Hành động, Tội phạm
+        </p>
+        <button type="button">Mua vé</button>
       </div>
-      <div>
-        <img src="/assets/images/c7b3f05fd10ace6aefdf6b27cec281e06592df34.jpg" alt="" />
-        <h4>Spider-Man:No Way Home</h4>
-        <p><img src="/assets/icons/Container.png" alt="">148 phút • Hành động, Phiên lưu</p>
-        <button type="submit">Mua vé</button>
+
+      <div class="books">
+        <img
+          src="/assets/images/c7b3f05fd10ace6aefdf6b27cec281e06592df34.jpg"
+          alt="Spider-Man"
+        />
+        <h4>Spider-Man: No Way Home</h4>
+        <p>
+          <img src="/assets/icons/Container.png" alt="" />
+          148 phút • Hành động, Phiêu lưu
+        </p>
+        <button type="button">Mua vé</button>
       </div>
-      <div>
-        <img src="/assets/images/370afe8fe83f3ec8dfc0a9c4553800424dcac7a6.png" alt="" />
-        <h4>The Matrix Resurrection</h4>
-        <p><img src="/assets/icons/Container.png" alt="">148 phút • Hành động, Viễn Tưởng</p>
-        <button type="submit">Mua vé</button>
-      </div>
+
+      <div class="books">
+        <img
+          src="/assets/images/370afe8fe83f3ec8dfc0a9c4553800424dcac7a6.png"
+          alt="The Matrix"
+        />
+        <h4>The Matrix Resurrections</h4>
+        <p>
+          <img src="/assets/icons/Container.png" alt="" />
+          148 phút • Hành động, Viễn tưởng
+        </p>
+        <button type="button">Mua vé</button>
+      </div> -->
     </section>
     <section class="special-order">
       <h3>Ưu đãi đặc biệt</h3>
@@ -86,7 +117,7 @@
         </div>
         <div>
           <img src="/assets/icons/Overlay (3).png" alt="" />
-          <h3>Combo Bắp Nước Tiết Kiệm</h3>
+          <h3>Thẻ thành viên VIP</h3>
           <p>
             Tiết kiệm đến 30% khi mua vé online kèm combo bắp nước Sweet Combo.
           </p>
@@ -94,12 +125,12 @@
         </div>
       </div>
     </section>
-    <section class="special-order">
+    <section class="special">
       <h3>Tại sao chọn RikkeiEdu</h3>
       <div>
         <div>
-          <img src="/assets/icons/Icon (1).png\" alt="" />
-          <h3>Trãi nghiệm đỉnh cao</h3>
+          <img src="/assets/icons/Icon (1).png" alt="" />
+          <h3>Trải nghiệm đỉnh cao</h3>
           <p>
             Hệ thống âm thanh Dolby Atmos và màn hình IMAX mang đến trải nghiệm
             điện ảnh sống động nhất.
@@ -123,22 +154,33 @@
         </div>
       </div>
     </section>
-    <section>
-      <div>
-        <h4>Đăng ký thành viên CineEdu</h4>
-        <p>Nhận ưu đãi vé xem phim và bắp nước hàng tuần.</p>
-        <input type="email" placeholder="Email của bạn" /><button type="submit">
-          Đăng ký
-        </button>
+    <section class="service">
+      <div class="service-add">
+        <div class="service-content">
+          <h4>Đăng ký thành viên CineEdu</h4>
+          <p>Nhận ưu đãi vé xem phim và bắp nước hàng tuần.</p>
+        </div>
+        <div class="service-form">
+          <input type="email" placeholder="Email của bạn" />
+          <button type="submit">Đăng ký</button>
+        </div>
       </div>
     </section>
-    <footer class = "footer">
-        <div>
-            <p>Liên hệ</p><p>Điều khoản</p><p>Tuyển dụng</p><p>Về chúng tôi</p><img src="/assets/icons/Link.png" alt=""><img src="/assets/icons/Link (1).png" alt="">
-        </div>
-        <div>
-            <h4>© 2026 RikkeiEdu. Tất cả quyền được bảo mật .</h4>
-        </div>
+    <footer class="footer">
+      <div>
+        <p>Liên hệ</p>
+        <p>Điều khoản</p>
+        <p>Tuyển dụng</p>
+        <p>Về chúng tôi</p>
+        <img src="/assets/icons/Link.png" alt="" /><img
+          src="/assets/icons/Link (1).png"
+          alt=""
+        />
+      </div>
+      <div>
+        <h4>© 2026 RikkeiEdu. Tất cả quyền được bảo mật .</h4>
+      </div>
     </footer>
+    <script src="/js/index.js"></script>
   </body>
 </html>

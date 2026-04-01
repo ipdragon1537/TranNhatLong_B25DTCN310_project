@@ -66,12 +66,12 @@
             <button class="btn-add">+ Thêm phim mới</button>
           </div>
         </header>
-
+        <div id = "feature-content"></div>
         <div class="filters">
-          <button class="filter-btn active">Tất cả (24)</button>
-          <button class="filter-btn">Đang chiếu (8)</button>
-          <button class="filter-btn">Sắp chiếu (5)</button>
-          <button class="filter-btn">Đã chiếu (11)</button>
+          <button class="filter-btn active" onclick="filterStatus('all')" >Tất cả (24)</button>
+          <button class="filter-btn" onclick="filterStatus('1')">Đang chiếu (8)</button>
+          <button class="filter-btn" onclick="filterStatus('2')">Sắp chiếu (5)</button>
+          <button class="filter-btn" onclick="filterStatus('0')">Đã chiếu (11)</button>
         </div>
 
         <div class="table-container">
@@ -88,41 +88,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><div class="movie-poster orange"></div></td>
-                <td>
-                  <strong>Dune: Part Two</strong>
-                  <span class="sub-name">Hành tinh cát: Phần hai</span>
-                </td>
-                <td>
-                  <span class="tag">Hành động</span>
-                  <span class="tag">Viễn tưởng</span>
-                </td>
-                <td>166 phút</td>
-                <td>01/03/2024</td>
-                <td><span class="status status-playing">Đang chiếu</span></td>
-                <td>
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-regular fa-circle-xmark"></i>
-                </td>
-              </tr>
-              <tr>
-                <td><div class="movie-poster green"></div></td>
-                <td>
-                  <strong>Godzilla x Kong</strong>
-                  <span class="sub-name">Đế Chế Mới</span>
-                </td>
-                <td>
-                  <span class="tag">Hành động</span>
-                </td>
-                <td>115 phút</td>
-                <td>29/03/2024</td>
-                <td><span class="status status-upcoming">Sắp chiếu</span></td>
-                <td>
-                  <i class="fa-regular fa-pen-to-square"></i>
-                  <i class="fa-regular fa-circle-xmark"></i>
-                </td>
-              </tr>
+              
             </tbody>
           </table>
         </div>

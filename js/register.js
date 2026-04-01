@@ -6,56 +6,65 @@ registerForm.addEventListener("submit", (e) => {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirm-password").value;
-
+    const agree = document.getElementById("agree").checked;
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let errors = [];
     if (fullName === "") {
-        showToast("Họ và tên không được để trống!", "error");
-        return;
+        errors.push("Họ và tên không được để trống!");
     }
-
     if (email === "") {
-        showToast("Email không được để trống!", "error");
-        return;
+        errors.push("Email không được để trống!");
+    } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            errors.push("Email không đúng định dạng!");
+        }
     }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        showToast("Email không đúng định dạng!", "error");
-        return;
-    }
-
     if (password === "") {
-        showToast("Mật khẩu không được để trống!", "error");
-        return;
+        errors.push("Mật khẩu không được để trống!");
+    } else {
+        const passwordRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            errors.push("Mật khẩu tối thiểu 8 ký tự và có ít nhất 1 ký tự đặc biệt!");
+        }
     }
-    const passwordRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
-    if (!passwordRegex.test(password)) {
-        showToast("Mật khẩu tối thiểu 8 ký tự và có ít nhất 1 ký tự đặc biệt!", "error");
-        return;
-    }
-
     if (confirmPassword === "") {
-        showToast("Mật khẩu xác nhận không được để trống!", "error");
+        errors.push("Mật khẩu xác nhận không được để trống!");
+    } else if (password !== confirmPassword) {
+        errors.push("Mật khẩu không trùng khớp!");
+    }
+    if (!agree) {
+        errors.push("Vui lòng đồng ý với điều khoản sử dụng!");
+    }
+    if (errors.length > 0) {
+        showToast(errors[0], "error");
         return;
     }
+    if (users.some((u) => u.email === email)) {
+        showToast("Email đã được sử dụng!", "error");
+        return;
+    }
+    users.push({
+        fullName: fullName,
+        email: email,
+        password: password,
+        role: "user",
+        createdAt: new Date().toISOString(),
+        isActive: true,
+    });
+    
+    localStorage.setItem("users", JSON.stringify(users));
 
-    if (password !== confirmPassword) {
-        showToast("Mật khẩu không trùng khớp!", "error");
-        return;
-    }
-    localStorage.setItem("user",JSON.stringify({
-        fullName:fullName,
-        email:email,
-        password:password
-    }));
     showToast("Đăng ký thành công!", "success");
+
     setTimeout(() => {
         window.location.href = "/pages/login.html";
     }, 1500);
 });
 function showToast(message, type) {
-    const toast = document.createElement("div");
-    toast.textContent = message;
-    toast.style.cssText = `
+  const toast = document.createElement("div");
+  toast.textContent = message;
+  toast.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
@@ -69,8 +78,8 @@ function showToast(message, type) {
         z-index: 9999;
         animation: fadeIn .3s ease;
     `;
-    document.body.appendChild(toast);
-    setTimeout(() => {
-        toast.remove();
-    }, 2000);
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
 }

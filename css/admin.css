@@ -232,7 +232,13 @@ tr:hover {
   border-radius: 4px;
   background: #444;
 }
-
+.movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
 .sub-name {
   display: block;
   font-size: 12px;
@@ -261,6 +267,10 @@ tr:hover {
 .status-upcoming {
   background: rgba(234, 179, 8, 0.2);
   color: #facc15;
+}
+.status-play {
+  background: rgba(107, 114, 128, 0.1);
+  color: gray;
 }
 
 .pagination {
