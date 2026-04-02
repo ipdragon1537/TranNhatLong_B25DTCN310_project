@@ -22,12 +22,16 @@
           <span>Rikkei <strong>Cinema</strong></span>
         </div>
         <nav class="menu">
-          <div class="menu-item active">
-            <i class="fa-solid fa-film"></i> Quản lý phim
-          </div>
-          <div class="menu-item">
-            <i class="fa-solid fa-ticket"></i> Quản lý vé
-          </div>
+          <a href="admin.html" class="menu-link">
+            <div class="menu-item active">
+              <i class="fa-solid fa-film"></i> Quản lý phim
+            </div>
+          </a>
+          <a href="ticketManager.html" class="menu-link">
+            <div class="menu-item">
+              <i class="fa-solid fa-ticket"></i> Quản lý vé
+            </div>
+          </a>
         </nav>
         <div class="user-profile">
           <div class="avatar-wrapper">
@@ -63,15 +67,25 @@
               <i class="fa-solid fa-magnifying-glass"></i>
               <input type="text" placeholder="Tìm tên phim..." />
             </div>
-            <button class="btn-add">+ Thêm phim mới</button>
+            <button class="btn-add" onclick="openModal()">
+              + Thêm phim mới
+            </button>
           </div>
         </header>
-        <div id = "feature-content"></div>
+        <div id="feature-content"></div>
         <div class="filters">
-          <button class="filter-btn active" onclick="filterStatus('all')" >Tất cả (24)</button>
-          <button class="filter-btn" onclick="filterStatus('1')">Đang chiếu (8)</button>
-          <button class="filter-btn" onclick="filterStatus('2')">Sắp chiếu (5)</button>
-          <button class="filter-btn" onclick="filterStatus('0')">Đã chiếu (11)</button>
+          <button class="filter-btn active" onclick="filterStatus('all')">
+            Tất cả (24)
+          </button>
+          <button class="filter-btn" onclick="filterStatus('1')">
+            Đang chiếu (8)
+          </button>
+          <button class="filter-btn" onclick="filterStatus('2')">
+            Sắp chiếu (5)
+          </button>
+          <button class="filter-btn" onclick="filterStatus('0')">
+            Đã chiếu (11)
+          </button>
         </div>
 
         <div class="table-container">
@@ -87,9 +101,7 @@
                 <th>THAO TÁC</th>
               </tr>
             </thead>
-            <tbody>
-              
-            </tbody>
+            <tbody></tbody>
           </table>
         </div>
 
@@ -142,6 +154,161 @@
               Xác nhận đăng xuất
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-overlay" id="addMovieModal">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h2 class="modal-title">Thêm Phim Mới</h2>
+          <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-group full">
+            <label>Tên phim <span class="required">*</span></label>
+            <input type="text" id="input-title" placeholder="Nhập tên phim" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Thể loại <span class="required">*</span></label>
+              <select id="input-genre">
+                <option value="">Chọn thể loại</option>
+                <option>Hành động</option>
+                <option>Viễn tưởng</option>
+                <option>Hoạt hình</option>
+                <option>Kinh dị</option>
+                <option>Tâm lý</option>
+                <option>Hài</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Thời lượng (phút) <span class="required">*</span></label>
+              <input
+                type="number"
+                id="input-duration"
+                placeholder="Ví dụ: 120"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Ngày khởi chiếu <span class="required">*</span></label>
+              <input type="date" id="input-date" />
+            </div>
+            <div class="form-group">
+              <label>Trạng thái</label>
+              <select id="input-status">
+                <option>Đang chiếu</option>
+                <option>Sắp chiếu</option>
+                <option>Ngừng chiếu</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label>Giá vé <span class="required">*</span></label>
+            <input
+              type="text"
+              id="input-price"
+              placeholder="Nhập giá vé ...."
+            />
+          </div>
+
+          <div class="form-group full">
+            <label>URL Ảnh bìa</label>
+            <div class="input-with-btn">
+              <span class="input-icon">🔗</span>
+              <input
+                type="text"
+                id="input-poster"
+                placeholder="https://example.com/poster.jpg"
+              />
+              <button class="btn-upload">Tải Ảnh</button>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label>Mô tả ngắn</label>
+            <textarea
+              id="input-desc"
+              placeholder="Nhập tóm tắt nội dung phim..."
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-cancel" onclick="closeModal()">Hủy</button>
+          <button class="btn-submit">+ Thêm mới</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-overlay" id="editMovieModal">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h2 class="modal-title">Cập Nhật Thông Tin Phim</h2>
+          <button class="modal-close" onclick="closeEditModal()">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" id="edit-id" />
+
+          <div class="form-group full">
+            <label>Tên phim *</label>
+            <input type="text" id="edit-title" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Thể loại *</label>
+              <input
+                type="text"
+                id="edit-genre"
+                placeholder="Hành động, Viễn tưởng"
+              />
+            </div>
+            <div class="form-group">
+              <label>Thời lượng *</label>
+              <input type="number" id="edit-duration" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Ngày khởi chiếu *</label>
+              <input type="date" id="edit-date" />
+            </div>
+            <div class="form-group">
+              <label>Trạng thái</label>
+              <select id="edit-status">
+                <option value="1">Đang chiếu</option>
+                <option value="2">Sắp chiếu</option>
+                <option value="0">Ngừng chiếu</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label>Giá vé *</label>
+            <input type="number" id="edit-price" />
+          </div>
+
+          <div class="form-group full">
+            <label>URL ảnh bìa</label>
+            <input type="text" id="edit-poster" />
+          </div>
+
+          <div class="form-group full">
+            <label>Mô tả</label>
+            <textarea id="edit-desc"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button onclick="closeEditModal()">Hủy</button>
+          <button id="btn-update-custom">💾 Cập nhật</button>
         </div>
       </div>
     </div>

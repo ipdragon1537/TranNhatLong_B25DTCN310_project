@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rikkei Cinema - Quản lý vé</title>
+    <link rel="stylesheet" href="/css/ticketManager.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <aside class="sidebar">
+        <div class="logo">
+          <img src="/assets/icons/Background.png" alt="logo" />
+          <span>Rikkei <strong>Cinema</strong></span>
+        </div>
+        <nav class="menu">
+          <a href="admin.html" class="menu-link">
+            <div class="menu-item">
+              <i class="fa-solid fa-film"></i> Quản lý phim
+            </div>
+          </a>
+          <a href="ticketManager.html" class="menu-link">
+            <div class="menu-item active">
+              <i class="fa-solid fa-ticket"></i> Quản lý vé
+            </div>
+          </a>
+        </nav>
+        <div class="user-profile">
+          <div class="avatar-wrapper">
+            <img
+              src="/assets/images/4b3c32e708cfeaf4ac3b720d07977c0fcfc63eec.jpg"
+              class="avatar"
+            />
+          </div>
+          <div class="user-info">
+            <p class="name">Admin Quản lý</p>
+            <p class="email">LQTuan@rikkei.edu.vn</p>
+          </div>
+          <button
+            type="button"
+            class="logout-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#logoutModal"
+          >
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <div class="topbar">
+          <h1 class="topbar-title">Quản lý vé đã đặt</h1>
+          <div class="topbar-right">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input type="text" placeholder="Tìm kiếm mã vé, tên khách..." />
+            </div>
+            <button class="notif-btn">
+              <i class="fa-solid fa-bell"></i>
+              <span class="notif-dot"></span>
+            </button>
+          </div>
+        </div>
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Tổng vé hôm nay</span>
+              <i class="fa-solid fa-ticket icon-bg"></i>
+            </div>
+            <div class="stat-value">152</div>
+            <div class="stat-footer status-up">+12% so với hôm qua</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Doanh thu ngày</span>
+              <i class="fa-solid fa-money-bill-wave icon-bg"></i>
+            </div>
+            <div class="stat-value">12.5tr <span>đ</span></div>
+            <div class="stat-footer status-up">+5% so với mục tiêu</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Vé chờ xác nhận</span>
+              <i class="fa-solid fa-clipboard-list icon-bg"></i>
+            </div>
+            <div class="stat-value">5</div>
+            <div class="stat-footer status-warning">
+              <i class="fa-solid fa-triangle-exclamation"></i> Cần xử lý ngay
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="ticket-table">
+            <thead>
+              <tr>
+                <th>Mã vé</th>
+                <th>Khách hàng</th>
+                <th>Phim</th>
+                <th>Suất chiếu</th>
+                <th>Ghế</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ticket-id">#VE-1001</td>
+                <td class="info-cell">
+                  <span class="primary">Nguyễn Văn A</span>
+                  <span class="secondary">0987.xxx.xxx</span>
+                </td>
+                <td>Dune: Part Two</td>
+                <td class="info-cell">
+                  <span class="primary">10:00</span>
+                  <span class="secondary date">15/10/2023</span>
+                </td>
+                <td>
+                  <div class="seat-cell">
+                    <span class="seat-badge">F12</span>
+                    <span class="seat-badge">F13</span>
+                  </div>
+                </td>
+                <td style="font-weight: 700">180.000đ</td>
+                <td><span class="status-badge paid">Đã Thanh Toán</span></td>
+                <td class="action-btns">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <i class="fa-solid fa-circle-xmark"></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="ticket-id">#VE-1002</td>
+                <td class="info-cell">
+                  <span class="primary">Trần Thị B</span>
+                  <span class="secondary">0912.xxx.xxx</span>
+                </td>
+                <td>Mai</td>
+                <td class="info-cell">
+                  <span class="primary">13:30</span>
+                  <span class="secondary date">15/10/2023</span>
+                </td>
+                <td>
+                  <div class="seat-cell">
+                    <span class="seat-badge">G5</span>
+                  </div>
+                </td>
+                <td style="font-weight: 700">90.000đ</td>
+                <td><span class="status-badge pending">Chờ xử lý</span></td>
+                <td class="action-btns">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <i class="fa-solid fa-circle-xmark"></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="ticket-id">#VE-1003</td>
+                <td class="info-cell">
+                  <span class="primary">Lê Văn C</span>
+                  <span class="secondary">0909.xxx.xxx</span>
+                </td>
+                <td>Kung Fu Panda 4</td>
+                <td class="info-cell">
+                  <span class="primary">19:00</span>
+                  <span class="secondary date">15/10/2023</span>
+                </td>
+                <td>
+                  <div class="seat-cell">
+                    <span class="seat-badge">H10</span>
+                    <span class="seat-badge">H11</span>
+                    <span class="seat-badge">H12</span>
+                  </div>
+                </td>
+                <td style="font-weight: 700">270.000đ</td>
+                <td><span class="status-badge paid">Đã Thanh Toán</span></td>
+                <td class="action-btns">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <i class="fa-solid fa-circle-xmark"></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="ticket-id">#VE-1004</td>
+                <td class="info-cell">
+                  <span class="primary">Phạm Minh D</span>
+                  <span class="secondary">0933.xxx.xxx</span>
+                </td>
+                <td>Exhuma: Quật Mộ</td>
+                <td class="info-cell">
+                  <span class="primary">21:45</span>
+                  <span class="secondary date">14/10/2023</span>
+                </td>
+                <td>
+                  <div class="seat-cell">
+                    <span class="seat-badge">E8</span>
+                  </div>
+                </td>
+                <td style="font-weight: 700">90.000đ</td>
+                <td><span class="status-badge cancelled">Đã hủy</span></td>
+                <td class="action-btns">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <i class="fa-solid fa-circle-xmark"></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="ticket-id">#VE-1005</td>
+                <td class="info-cell">
+                  <span class="primary">Hoàng Yến E</span>
+                  <span class="secondary">0977.xxx.xxx</span>
+                </td>
+                <td>Godzilla x Kong</td>
+                <td class="info-cell">
+                  <span class="primary">09:15</span>
+                  <span class="secondary date">16/10/2023</span>
+                </td>
+                <td>
+                  <div class="seat-cell">
+                    <span class="seat-badge">D4</span>
+                    <span class="seat-badge">D5</span>
+                  </div>
+                </td>
+                <td style="font-weight: 700">180.000đ</td>
+                <td><span class="status-badge pending">Chờ xử lý</span></td>
+                <td class="action-btns">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <i class="fa-solid fa-circle-xmark"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="pagination-wrapper">
+            <span class="secondary">Đang xem 1 đến 5 trong số 152 kết quả</span>
+            <div class="pagination">
+              <button class="page-btn">‹</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">...</button>
+              <button class="page-btn">10</button>
+              <button class="page-btn">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
