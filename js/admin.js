@@ -40,7 +40,7 @@ const dataFilm = {
       genres: "Hành động, Viễn tưởng",
       duration: 115,
       releaseDate: "29/03/2024",
-      status: 2,
+      status:2,
       posterUrl: "/assets/images/Godzilla Poster.jpg",
       description: "Godzilla và Kong hợp sức chống lại mối đe dọa mới...",
       ticketPrice: 80000,
@@ -72,8 +72,7 @@ const dataFilm = {
   ],
 };
 
-
-localStorage.setItem("movies", JSON.stringify(dataFilm.movies));
+// localStorage.setItem("movies", JSON.stringify(dataFilm.movies));
 
 const getMovies = () => JSON.parse(localStorage.getItem("movies")) || [];
 //in ra danh sách phim
@@ -123,7 +122,6 @@ function renderMovies(list) {
     `;
   }).join("");
 }
-
 renderMovies(getMovies());
 //Lọc theo trạng thái 
 const filterStatus = (status) => {
@@ -185,13 +183,21 @@ document.querySelector(".btn-submit").addEventListener("click", () => {
     releaseDate: date,
     status: status === "Đang chiếu" ? 1 : status === "Sắp chiếu" ? 2 : 0,
     posterUrl: posterUrl || "/assets/images/default.jpg",
-    price: Number(price),
+    ticketPrice: Number(price),
     description,
   });
 
   localStorage.setItem("movies", JSON.stringify(movies));
   renderMovies(movies);
   alert("Thêm phim thành công!");
+  document.getElementById("input-title").value = "";
+  document.getElementById("input-genre").value = "";
+  document.getElementById("input-duration").value = "";
+  document.getElementById("input-date").value = "";
+  document.getElementById("input-status").value = "";
+  document.getElementById("input-price").value = "";
+  document.getElementById("input-poster").value = "";
+  document.getElementById("input-desc").value = "";
   closeModal();
 });
 
@@ -256,3 +262,21 @@ document.getElementById("btn-update-custom").onclick = () => {
   closeEditModal();
   renderMovies(movies);
 };
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("movieSearchInput");
+
+  if (searchInput) {
+    searchInput.addEventListener("input", function () {
+      const searchTerm = this.value.toLowerCase().trim();
+      const allMovies = getMovies();
+
+      const filteredMovies = allMovies.filter((movie) => {
+        const titleEn = movie.title ? movie.title.toLowerCase() : "";
+        const titleVi = movie.titleVi ? movie.titleVi.toLowerCase() : "";
+
+        return titleEn.includes(searchTerm) || titleVi.includes(searchTerm);
+      });
+      renderMovies(filteredMovies);
+    });
+  }
+});

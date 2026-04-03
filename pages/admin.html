@@ -65,7 +65,7 @@
           <div class="header-right">
             <div class="search-bar">
               <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="Tìm tên phim..." />
+              <input type="text" id="movieSearchInput" placeholder="Tìm tên phim..." />
             </div>
             <button class="btn-add" onclick="openModal()">
               + Thêm phim mới
@@ -203,7 +203,7 @@
               <select id="input-status">
                 <option>Đang chiếu</option>
                 <option>Sắp chiếu</option>
-                <option>Ngừng chiếu</option>
+                <option>Đã chiếu</option>
               </select>
             </div>
           </div>
@@ -285,7 +285,7 @@
               <select id="edit-status">
                 <option value="1">Đang chiếu</option>
                 <option value="2">Sắp chiếu</option>
-                <option value="0">Ngừng chiếu</option>
+                <option value="0">Đã chiếu</option>
               </select>
             </div>
           </div>

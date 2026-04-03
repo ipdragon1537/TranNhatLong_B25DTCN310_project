@@ -208,23 +208,46 @@ let closeModal = () => {
   document.getElementById("videoPlayer").src = "";
 }
 // Hiển thị phim nổi bật
-function renderHero() {
-  const movies = getMovies();
-  let movie = movies.find(m => m.status === 1);
+function renderInstagramHero() {
+  const wrapper = document.getElementById("heroWrapper");
+  const dotsContainer = document.getElementById("carouselDots");
+  const movies = getMovies().filter(m => m.status === 1);
 
-  const section = document.querySelector(".section");
-  const heroImage = document.querySelector(".hero-image");
-  heroImage.style.backgroundImage = `
-    linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2)),
-    url('${movie.posterUrl}')
-  `;
-  heroImage.style.backgroundSize = "cover";
-  heroImage.style.backgroundPosition = "center";
-  section.querySelector("h2").innerText = movie.title;
-  section.querySelector("p").innerText =
-    `${movie.genres} • ${movie.duration} phút`;
-  section.querySelector(".ticket-button").onclick = () => handleAdd(movie.id);
-  section.querySelector(".trailer").onclick = () => trailerOpen(movie.id);
+  if (!wrapper || movies.length === 0) {
+    wrapper.innerHTML = "<div style='color:white; padding:100px;'>Chưa có phim nổi bật.</div>";
+    return;
+  }
+  wrapper.innerHTML = movies.map(movie => `
+    <div class="hero-slide" style="background-image: url('${movie.posterUrl}')">
+      <div class="hero-content">
+        <h5>🔥 Đang thịnh hành</h5>
+        <h2>${movie.titleVi || movie.title}</h2>
+        <p>${movie.description || "Hành trình vĩ đại của những nhân vật huyền thoại đang chờ đợi bạn khám phá ngay hôm nay."}</p>
+        <div class="button-group">
+          <button class="ticket-button" onclick="handleAdd(${movie.id})">🎟️ Đặt vé ngay</button>
+          <button class="trailer" onclick="trailerOpen(${movie.id})">▶ Xem trailer</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+  dotsContainer.innerHTML = movies.map((_, i) => `
+    <div class="dot ${i === 0 ? 'active' : ''}" onclick="scrollToSlide(${i})"></div>
+  `).join("");
+  const viewport = document.getElementById("heroViewport");
+  viewport.addEventListener("scroll", () => {
+    const scrollPosition = viewport.scrollLeft;
+    const slideWidth = viewport.offsetWidth;
+    const currentIndex = Math.round(scrollPosition / slideWidth);
+    
+    const dots = document.querySelectorAll(".dot");
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentIndex);
+    });
+  });
 }
-
-renderHero();
+function scrollToSlide(index) {
+  const viewport = document.getElementById("heroViewport");
+  const slideWidth = viewport.offsetWidth;
+  viewport.scrollLeft = index * slideWidth;
+}
+document.addEventListener("DOMContentLoaded", renderInstagramHero);

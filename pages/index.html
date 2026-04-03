@@ -20,26 +20,15 @@
       </nav>
       <a class="btn-login-nav" href="login.html">Đăng nhập/Đăng ký</a>
     </header>
-    <section class="section">
-      <div class="hero-image"></div>
-      <div class="container">
-        <h5>Đang thịnh hành</h5>
-        <h2>Dune: Hành Tinh Cát</h2>
-        <p>
-          Câu chuyện về cuộc hành trình của Paul Atreides, một chàng trai trẻ
-          tài năng và rực rỡ, sinh ra với số phận vĩ đại vượt quá sự hiểu biết
-          của mình.
-        </p>
-        <div class="button-group">
-          <button class="ticket-button" onclick="handleAdd(1)">
-            🎟️ Đặt vé ngay
-          </button>
-          <button class="trailer" onclick="trailerOpen(1)">
-            ▶ Xem trailer
-          </button>
-        </div>
-      </div>
-    </section>
+    <section class="hero-carousel-section">
+  <div class="hero-viewport" id="heroViewport">
+    <div class="hero-wrapper" id="heroWrapper">
+      <div class="loading-text">Đang tải phim nổi bật...</div>
+    </div>
+  </div>
+
+  <div class="carousel-dots" id="carouselDots"></div>
+</section>
     <section class="film-book">
       <h3>Phim đang chiếu</h3>
       <div id="movie-list"></div>
