@@ -99,7 +99,7 @@
             </div>
           </div>
         </div>
-
+        <button onclick="openAddTicketModal()">Thêm vé mới</button>
         <div class="table-container">
           <table class="ticket-table">
             <thead>
@@ -114,127 +114,7 @@
                 <th>Thao tác</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td class="ticket-id">#VE-1001</td>
-                <td class="info-cell">
-                  <span class="primary">Nguyễn Văn A</span>
-                  <span class="secondary">0987.xxx.xxx</span>
-                </td>
-                <td>Dune: Part Two</td>
-                <td class="info-cell">
-                  <span class="primary">10:00</span>
-                  <span class="secondary date">15/10/2023</span>
-                </td>
-                <td>
-                  <div class="seat-cell">
-                    <span class="seat-badge">F12</span>
-                    <span class="seat-badge">F13</span>
-                  </div>
-                </td>
-                <td style="font-weight: 700">180.000đ</td>
-                <td><span class="status-badge paid">Đã Thanh Toán</span></td>
-                <td class="action-btns">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  <i class="fa-solid fa-circle-xmark"></i>
-                </td>
-              </tr>
-              <tr>
-                <td class="ticket-id">#VE-1002</td>
-                <td class="info-cell">
-                  <span class="primary">Trần Thị B</span>
-                  <span class="secondary">0912.xxx.xxx</span>
-                </td>
-                <td>Mai</td>
-                <td class="info-cell">
-                  <span class="primary">13:30</span>
-                  <span class="secondary date">15/10/2023</span>
-                </td>
-                <td>
-                  <div class="seat-cell">
-                    <span class="seat-badge">G5</span>
-                  </div>
-                </td>
-                <td style="font-weight: 700">90.000đ</td>
-                <td><span class="status-badge pending">Chờ xử lý</span></td>
-                <td class="action-btns">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  <i class="fa-solid fa-circle-xmark"></i>
-                </td>
-              </tr>
-              <tr>
-                <td class="ticket-id">#VE-1003</td>
-                <td class="info-cell">
-                  <span class="primary">Lê Văn C</span>
-                  <span class="secondary">0909.xxx.xxx</span>
-                </td>
-                <td>Kung Fu Panda 4</td>
-                <td class="info-cell">
-                  <span class="primary">19:00</span>
-                  <span class="secondary date">15/10/2023</span>
-                </td>
-                <td>
-                  <div class="seat-cell">
-                    <span class="seat-badge">H10</span>
-                    <span class="seat-badge">H11</span>
-                    <span class="seat-badge">H12</span>
-                  </div>
-                </td>
-                <td style="font-weight: 700">270.000đ</td>
-                <td><span class="status-badge paid">Đã Thanh Toán</span></td>
-                <td class="action-btns">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  <i class="fa-solid fa-circle-xmark"></i>
-                </td>
-              </tr>
-              <tr>
-                <td class="ticket-id">#VE-1004</td>
-                <td class="info-cell">
-                  <span class="primary">Phạm Minh D</span>
-                  <span class="secondary">0933.xxx.xxx</span>
-                </td>
-                <td>Exhuma: Quật Mộ</td>
-                <td class="info-cell">
-                  <span class="primary">21:45</span>
-                  <span class="secondary date">14/10/2023</span>
-                </td>
-                <td>
-                  <div class="seat-cell">
-                    <span class="seat-badge">E8</span>
-                  </div>
-                </td>
-                <td style="font-weight: 700">90.000đ</td>
-                <td><span class="status-badge cancelled">Đã hủy</span></td>
-                <td class="action-btns">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  <i class="fa-solid fa-circle-xmark"></i>
-                </td>
-              </tr>
-              <tr>
-                <td class="ticket-id">#VE-1005</td>
-                <td class="info-cell">
-                  <span class="primary">Hoàng Yến E</span>
-                  <span class="secondary">0977.xxx.xxx</span>
-                </td>
-                <td>Godzilla x Kong</td>
-                <td class="info-cell">
-                  <span class="primary">09:15</span>
-                  <span class="secondary date">16/10/2023</span>
-                </td>
-                <td>
-                  <div class="seat-cell">
-                    <span class="seat-badge">D4</span>
-                    <span class="seat-badge">D5</span>
-                  </div>
-                </td>
-                <td style="font-weight: 700">180.000đ</td>
-                <td><span class="status-badge pending">Chờ xử lý</span></td>
-                <td class="action-btns">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  <i class="fa-solid fa-circle-xmark"></i>
-                </td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
 
           <div class="pagination-wrapper">
@@ -254,4 +134,173 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
+  <div id="add-ticket-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('add-ticket-modal')"
+        >&times;</span
+      >
+      <h2>Thêm Mới Đặt Vé</h2>
+      <form id="add-ticket-form" onsubmit="addTicket(event)">
+        <div class="form-group">
+          <label for="add-customer-name">Tên khách hàng:</label>
+          <input
+            type="text"
+            id="add-customer-name"
+            placeholder="Nhập tên khách hàng"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="add-customer-phone">Số điện thoại:</label>
+          <input
+            type="text"
+            id="add-customer-phone"
+            placeholder="Nhập số điện thoại"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="add-movie">Chọn phim:</label>
+          <select id="add-movie" required>
+            <option value="">Chọn phim đang chiếu...</option>
+            <option value="1">Dune: Part Two</option>
+            <option value="2">Mai</option>
+            <option value="3">Kung Fu Panda 4</option>
+            <option value="4">Exhuma: Quật Mộ</option>
+            <option value="5">Godzilla x Kong</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="add-showtime">Chọn suất chiếu:</label>
+          <select id="add-showtime" required>
+            <option value="">Chọn suất chiếu...</option>
+            <option value="1">10:00 - 15/10/2023</option>
+            <option value="2">13:30 - 15/10/2023</option>
+            <option value="3">19:00 - 15/10/2023</option>
+            <option value="4">21:45 - 14/10/2023</option>
+            <option value="5">09:15 - 16/10/2023</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="add-seats">Chọn ghế:</label>
+          <input type="text" id="add-seats" placeholder="F5, F6" required />
+        </div>
+        <div class="form-group">
+          <label for="add-payment-method">Phương thức thanh toán:</label>
+          <select id="add-payment-method" required>
+            <option value="0">Tiền mặt</option>
+            <option value="1">Chuyển khoản</option>
+            <option value="2">Thẻ tín dụng</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="add-note">Ghi chú:</label>
+          <textarea
+            id="add-note"
+            placeholder="Nhập ghi chú của admin..."
+          ></textarea>
+        </div>
+        <div class="total-amount">
+          <p>Tổng tiền dự kiến: <span id="add-total-amount">240.000 đ</span></p>
+        </div>
+        <div class="modal-actions">
+          <button
+            type="button"
+            class="btn btn-cancel"
+            onclick="closeModal('add-ticket-modal')"
+          >
+            Hủy
+          </button>
+          <button type="submit" class="btn btn-confirm">Xác nhận đặt vé</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="edit-ticket-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('edit-ticket-modal')"
+        >&times;</span
+      >
+      <h2>Cập Nhật Thông Tin Vé</h2>
+      <form id="edit-ticket-form" onsubmit="updateTicket(event)">
+        <input type="hidden" id="edit-ticket-id" />
+        <div class="form-group">
+          <label for="edit-customer-name">Khách hàng:</label>
+          <input type="text" id="edit-customer-name" readonly />
+        </div>
+        <div class="form-group">
+          <label for="edit-movie">Phim:</label>
+          <select id="edit-movie" required>
+            <option value="1">Dune: Part Two</option>
+            <option value="2">Mai</option>
+            <option value="3">Kung Fu Panda 4</option>
+            <option value="4">Exhuma: Quật Mộ</option>
+            <option value="5">Godzilla x Kong</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="edit-showtime">Suất chiếu:</label>
+          <input type="text" id="edit-showtime" readonly />
+        </div>
+        <div class="form-group">
+          <label for="edit-seats">Vị trí ghế:</label>
+          <input type="text" id="edit-seats" readonly />
+        </div>
+        <div class="form-group">
+          <label for="edit-payment-status">Trạng thái thanh toán:</label>
+          <select id="edit-payment-status" required>
+            <option value="true">Đã thanh toán</option>
+            <option value="false">Chưa thanh toán</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="edit-note">Ghi chú:</label>
+          <textarea
+            id="edit-note"
+            placeholder="Nhập ghi chú của admin..."
+          ></textarea>
+        </div>
+        <div class="total-amount">
+          <p>Tổng số ghế: <span id="edit-seat-count">2</span></p>
+          <p>
+            Tổng tiền thanh toán: <span id="edit-total-amount">240.000 đ</span>
+          </p>
+        </div>
+        <div class="modal-actions">
+          <button
+            type="button"
+            class="btn btn-cancel"
+            onclick="closeModal('edit-ticket-modal')"
+          >
+            Hủy
+          </button>
+          <button type="submit" class="btn btn-confirm">Lưu thay đổi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="cancel-ticket-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('cancel-ticket-modal')"
+        >&times;</span
+      >
+      <h2>Xác nhận hủy vé</h2>
+      <p>Bạn có chắc chắn muốn hủy và xóa vé này không?</p>
+      <p>Hãy đảm bảo rằng giải phóng ghế ngồi và không thể hoàn tác.</p>
+      <input type="hidden" id="cancel-ticket-id" />
+      <div class="modal-actions">
+        <button
+          type="button"
+          class="btn btn-cancel"
+          onclick="closeModal('cancel-ticket-modal')"
+        >
+          Đóng
+        </button>
+        <button type="button" class="btn btn-confirm" onclick="cancelTicket()">
+          Xác nhận hủy
+        </button>
+      </div>
+    </div>
+  </div>
+  <script src="/js/ticketManager.js"></script>
 </html>
